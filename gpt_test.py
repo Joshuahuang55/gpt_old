@@ -1,12 +1,16 @@
-#from flask_ngrok import run_with_ngrok   # colab 使用，本機環境請刪除
-from flask import Flask, request
+import openai
 
+from flask import Flask, request
 # 載入 LINE Message API 相關函式庫
 from linebot import LineBotApi, WebhookHandler
 from linebot.models import TextSendMessage   # 載入 TextSendMessage 模組
 import json
 
 app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return 'Hello, World!'
 
 @app.route("/", methods=['POST'])
 def linebot():
@@ -44,5 +48,4 @@ def linebot():
     return 'OK'
 
 if __name__ == "__main__":
-    run_with_ngrok(app)   # colab 使用，本機環境請刪除
     app.run()
