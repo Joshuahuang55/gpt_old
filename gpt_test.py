@@ -12,7 +12,7 @@ app = Flask(__name__)
 def home():
     return 'Hello, World!'
 
-@app.route("/", methods=['POST'])
+@app.route("/webhook", methods=['POST'])
 def linebot():
     body = request.get_data(as_text=True)
     json_data = json.loads(body)
